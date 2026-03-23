@@ -1,1 +1,166 @@
-
+{
+  "api_info": {
+    "name": "JSONPlaceholder",
+    "base_url": "https://jsonplaceholder.typicode.com",
+    "assessment_date": "2026-03-22",
+    "assessor": "Future Interns - Cybersecurity Task 3"
+  },
+  "test_results": [
+    {
+      "method": "GET",
+      "endpoint": "/users",
+      "status_code": 200,
+      "response_time": 0.606,
+      "response_size": 5645,
+      "authentication_required": false,
+      "headers": {
+        "content_type": "application/json; charset=utf-8",
+        "server": "cloudflare",
+        "x_frame_options": "Not set",
+        "x_content_type_options": "nosniff",
+        "strict_transport_security": "Not set",
+        "content_security_policy": "Not set",
+        "x_xss_protection": "Not set",
+        "rate_limit": "1000",
+        "rate_limit_remaining": "999"
+      },
+      "data_exposure_issues": [
+        "Email addresses exposed (10 records)",
+        "Phone numbers exposed (10 records)",
+        "Physical addresses exposed (10 records)",
+        "Geolocation data exposed (10 records)"
+      ]
+    },
+    {
+      "method": "GET",
+      "endpoint": "/users/1",
+      "status_code": 200,
+      "response_time": 0.576,
+      "response_size": 509,
+      "authentication_required": false,
+      "data_exposure_issues": [
+        "Complete user profile exposed including PII"
+      ]
+    },
+    {
+      "method": "GET",
+      "endpoint": "/posts",
+      "status_code": 200,
+      "response_time": 0.623,
+      "response_size": 27520,
+      "authentication_required": false,
+      "data_exposure_issues": [
+        "100 records returned without pagination",
+        "Content body exposed"
+      ]
+    },
+    {
+      "method": "GET",
+      "endpoint": "/comments",
+      "status_code": 200,
+      "response_time": 0.602,
+      "response_size": 157745,
+      "authentication_required": false,
+      "data_exposure_issues": [
+        "500 records returned (157KB)",
+        "Email addresses exposed (500 records)"
+      ]
+    },
+    {
+      "method": "GET",
+      "endpoint": "/todos",
+      "status_code": 200,
+      "response_time": 0.6,
+      "response_size": 24311,
+      "authentication_required": false,
+      "data_exposure_issues": [
+        "200 records returned without pagination"
+      ]
+    },
+    {
+      "method": "POST",
+      "endpoint": "/posts",
+      "status_code": 201,
+      "response_time": 0.668,
+      "response_size": 109,
+      "authentication_required": false,
+      "notes": "Resource created without authentication - CRITICAL ISSUE"
+    },
+    {
+      "method": "PUT",
+      "endpoint": "/posts/1",
+      "status_code": 200,
+      "response_time": 0.788,
+      "response_size": 95,
+      "authentication_required": false,
+      "notes": "Resource updated without authentication - CRITICAL ISSUE"
+    },
+    {
+      "method": "DELETE",
+      "endpoint": "/posts/1",
+      "status_code": 200,
+      "response_time": 0.657,
+      "response_size": 2,
+      "authentication_required": false,
+      "notes": "Resource deleted without authentication - CRITICAL ISSUE"
+    }
+  ],
+  "security_findings": [
+    {
+      "id": "API-001",
+      "title": "No Authentication Required for Any Endpoints",
+      "severity": "HIGH",
+      "cvss_score": 7.5,
+      "owasp_category": "API2:2023 - Broken Authentication"
+    },
+    {
+      "id": "API-002",
+      "title": "Excessive Data Exposure in API Responses",
+      "severity": "HIGH",
+      "cvss_score": 7.1,
+      "owasp_category": "API3:2023 - Broken Object Property Level Authorization"
+    },
+    {
+      "id": "API-003",
+      "title": "Missing Rate Limiting on Data-Intensive Endpoints",
+      "severity": "MEDIUM",
+      "cvss_score": 5.3,
+      "owasp_category": "API4:2023 - Unrestricted Resource Consumption"
+    },
+    {
+      "id": "API-004",
+      "title": "Missing Security Headers",
+      "severity": "MEDIUM",
+      "cvss_score": 5.0,
+      "owasp_category": "API8:2023 - Security Misconfiguration"
+    },
+    {
+      "id": "API-005",
+      "title": "No Authorization Checks for Resource Access",
+      "severity": "HIGH",
+      "cvss_score": 8.2,
+      "owasp_category": "API1:2023 - Broken Object Level Authorization"
+    },
+    {
+      "id": "API-006",
+      "title": "Write Operations Allowed Without Authentication",
+      "severity": "CRITICAL",
+      "cvss_score": 9.1,
+      "owasp_category": "API5:2023 - Broken Function Level Authorization"
+    },
+    {
+      "id": "API-007",
+      "title": "Server Information Disclosure",
+      "severity": "LOW",
+      "cvss_score": 3.7,
+      "owasp_category": "API8:2023 - Security Misconfiguration"
+    },
+    {
+      "id": "API-008",
+      "title": "No Input Validation on POST/PUT Data",
+      "severity": "MEDIUM",
+      "cvss_score": 6.5,
+      "owasp_category": "API3:2023 - Broken Object Property Level Authorization"
+    }
+  ]
+}
