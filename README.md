@@ -246,6 +246,6 @@ This assessment was conducted on the JSONPlaceholder demo API, which is intentio
 
 ---
 
-**Prepared by:** Future Interns  
-**Date:** March 22, 2026  
+**Prepared by:** Purnendu Rai  
+**Date:** March 23, 2026  
 **Classification:** Security Assessment Document
